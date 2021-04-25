@@ -1,6 +1,5 @@
 package views.pages;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,9 +17,9 @@ public class HomePage extends JPanel {
     private JPanel homeBody;
     private JPanel blackWindow;
     private JLabel background;
-    GeneralUtils generalUtils;
-    Navigator parent = new Navigator();
-    final int COMPONENTS_IN_X = parent.getBodyWidth() / 2 - ((parent.getBodyWidth() / 20) / 2);
+    private GeneralUtils generalUtils;
+    private Navigator parent = new Navigator();
+    private final int COMPONENTS_IN_X = parent.getBodyWidth() / 2 - ((parent.getBodyWidth() / 20) / 2);
 
     public HomePage(Navigator parent) {
         this.parent = parent;
@@ -28,7 +27,8 @@ public class HomePage extends JPanel {
 
         background = new JLabel();
         background.setBounds(0, 0, parent.getBodyWidth(), parent.getBodyHeight());
-        background.setIcon(new ImageIcon(getClass().getResource("/views/images/bghack.jpg")));
+        background.setIcon(generalUtils.scaleImageToLabel("/views/images/bghack.jpg", parent.getBodyWidth(),
+                parent.getBodyHeight()));
 
         blackWindow = new JPanel();
         blackWindow.setLayout(null);
@@ -36,7 +36,7 @@ public class HomePage extends JPanel {
         blackWindow.setBackground(new Color(0, 0, 0, 150));
 
         title = new JLabel();
-        title.setBounds(COMPONENTS_IN_X-50, 250, parent.getBodyWidth(), 50);
+        title.setBounds(COMPONENTS_IN_X - 50, 250, parent.getBodyWidth(), 50);
         title.setForeground(Color.WHITE);
 
         switcher = new JButton();

@@ -2,6 +2,8 @@ package views.utils;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -49,5 +51,14 @@ public class GeneralUtils {
             btn.setText(text);
             btn.setFont(new Font(newFont, Font.ITALIC, size));
         }
+    }
+
+    public ImageIcon scaleImageToLabel(String url, int width, int height) {
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource(url));
+        Image image = imageIcon.getImage();
+        Image scale = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        ImageIcon scaledImage = new ImageIcon(scale);
+
+        return scaledImage;
     }
 }

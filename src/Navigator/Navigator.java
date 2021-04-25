@@ -9,9 +9,9 @@ import views.pages.HomePage;
 import views.widgets.CarouselWidget;
 
 public class Navigator extends JFrame {
-    JPanel body;
-    Toolkit screen = Toolkit.getDefaultToolkit();
-    Dimension sizeScreen = screen.getScreenSize();
+    private JPanel body;
+    private Toolkit screen = Toolkit.getDefaultToolkit();
+    private Dimension sizeScreen = screen.getScreenSize();
     private int navigatorWidth = sizeScreen.width;
     private int navigatorHeight = sizeScreen.height;
 
