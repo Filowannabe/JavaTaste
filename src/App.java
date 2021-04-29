@@ -15,7 +15,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         Navigator navigator = new Navigator();
-        navigator.goHomePage(0, 0, navigator.getBodyWidth(), navigator.getBodyHeight());
+        navigator.goHelloPage(0, 0, navigator.getBodyWidth(), navigator.getBodyHeight());
         navigator.initComponents();
     }
 }

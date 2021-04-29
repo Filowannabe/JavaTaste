@@ -3,6 +3,8 @@ package views.utils;
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+
+import java.awt.Color;
 import java.awt.GridLayout;
 
 public class CarouselUtils {
@@ -13,11 +15,11 @@ public class CarouselUtils {
         generalUtils = new GeneralUtils();
     }
 
-    public JPanel initCarouselComponents(JPanel grid, int size, int width, int height, int rows, int columns) {
-
+    public JPanel initCarouselComponents(JPanel grid, int width, int height, int rows, int columns) {
         grid.setLayout(new GridLayout(rows, columns, 0, 0));
-        JPanel[] panel = new JPanel[size];
-        JLabel[] label = new JLabel[size];
+        grid.setBackground(new Color(30, 30, 30));
+        JPanel[] panel = new JPanel[columns];
+        JLabel[] label = new JLabel[columns];
 
         for (int i = 0; i < panel.length; i++) {
             panel[i] = new JPanel();

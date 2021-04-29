@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import java.awt.Cursor;
 
 public class GeneralUtils {
 
@@ -17,7 +18,7 @@ public class GeneralUtils {
             btn.setContentAreaFilled(false);
         }
         btn.setBorder(null);
-        btn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn.setFocusPainted(false);
         btn.setHorizontalTextPosition(SwingConstants.CENTER);
 
@@ -61,4 +62,5 @@ public class GeneralUtils {
 
         return scaledImage;
     }
+
 }

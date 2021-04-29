@@ -6,7 +6,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import views.pages.HomePage;
-import views.widgets.CarouselWidget;
+import views.pages.HelloPage;
 
 public class Navigator extends JFrame {
     private JPanel body;
@@ -30,13 +30,13 @@ public class Navigator extends JFrame {
         body.add(panel);
     }
 
-    public void goCarousel(int x, int y, int width, int height) {
+    public void goHelloPage(int x, int y, int width, int height) {
         body.removeAll();
         repaintAndRevalidate();
-        CarouselWidget carousel = new CarouselWidget(this);
-        carousel.setBounds(x, y, width, height);
-        carousel.setLayout(null);
-        body.add(carousel);
+        HelloPage temp = new HelloPage(this);
+        temp.setBounds(x, y, width, height);
+        temp.setLayout(null);
+        body.add(temp);
         repaintAndRevalidate();
     }
 
