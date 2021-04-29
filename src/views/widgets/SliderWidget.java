@@ -21,18 +21,17 @@ public class SliderWidget extends JPanel {
     private JScrollPane scrollBar;
     private JButton left;
     private JButton right;
-    private final int CAROUSEL_HEIGHT;
-    private final int CAROUSEL_LAST_ITEM;
-    private final int CAROUSEL_ITEMS_NUMBER;
+    private final int SLIDER_HEIGHT;
+    private final int SLIDER_LAST_ITEM;
+    private final int SLIDER_ITEMS_NUMBER;
 
     public SliderWidget(Navigator parent, int width, int height) {
         setSize(width, height);
         this.parent = parent;
 
-        CAROUSEL_HEIGHT = height;
-        CAROUSEL_ITEMS_NUMBER = 20;
-        CAROUSEL_LAST_ITEM = parent.getBodyWidth() * CAROUSEL_ITEMS_NUMBER - parent.getBodyWidth();
-
+        SLIDER_HEIGHT = height;
+        SLIDER_ITEMS_NUMBER = 20;
+        SLIDER_LAST_ITEM = (parent.getBodyWidth() * 3);
         generalUtils = new GeneralUtils();
         sliderUtils = new SliderUtils();
 
@@ -40,12 +39,12 @@ public class SliderWidget extends JPanel {
         JPanel gridLayout = new JPanel();
         flowLayout.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
         flowLayout.add(
-                sliderUtils.initCarouselComponents(parent, gridLayout, 300, CAROUSEL_HEIGHT, 0, CAROUSEL_ITEMS_NUMBER));
+                sliderUtils.initCarouselComponents(parent, gridLayout, 300, SLIDER_HEIGHT, 0, SLIDER_ITEMS_NUMBER));
 
         left = new JButton();
-        left.setBounds(0, CAROUSEL_HEIGHT / 2, 54, 70);
+        left.setBounds(0, SLIDER_HEIGHT / 2, 54, 70);
         right = new JButton();
-        right.setBounds(parent.getBodyWidth() - 54, CAROUSEL_HEIGHT / 2, 54, 70);
+        right.setBounds(parent.getBodyWidth() - 54, SLIDER_HEIGHT / 2, 54, 70);
 
         generalUtils.buttonChangeColorOrForeground(left, 0, 0, 0, true);
         generalUtils.buttonChangeColorOrForeground(left, 0, 255, 0, false);
@@ -67,7 +66,7 @@ public class SliderWidget extends JPanel {
         scrollBar.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollBar.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollBar.setBackground(Color.BLACK);
-        scrollBar.setBounds(0, 0, parent.getBodyWidth(), CAROUSEL_HEIGHT);
+        scrollBar.setBounds(0, 0, parent.getBodyWidth(), SLIDER_HEIGHT);
 
         add(right);
         add(left);
@@ -77,26 +76,26 @@ public class SliderWidget extends JPanel {
     public void repaintCarousel() {
         repaint();
         revalidate();
-        this.left.repaint();
-        this.left.revalidate();
-        this.right.repaint();
-        this.right.revalidate();
-        this.scrollBar.repaint();
-        this.scrollBar.revalidate();
+        left.repaint();
+        left.revalidate();
+        right.repaint();
+        right.revalidate();
+        scrollBar.repaint();
+        scrollBar.revalidate();
     }
 
     private void itemSlide(int control) {
         repaintCarousel();
         if (control == 0) {
             if (scrollBar.getHorizontalScrollBar().getValue() == 0) {
-                horizontalMovement.setValue(CAROUSEL_LAST_ITEM);
+                horizontalMovement.setValue(SLIDER_LAST_ITEM);
             } else {
                 horizontalMovement
                         .setValue(scrollBar.getHorizontalScrollBar().getValue() - (parent.getBodyWidth() / 2));
             }
         }
         if (control == 1) {
-            if (scrollBar.getHorizontalScrollBar().getValue() > (parent.getBodyWidth() * 3) - 20) {
+            if (scrollBar.getHorizontalScrollBar().getValue() > SLIDER_LAST_ITEM - 20) {
                 horizontalMovement.setValue(0);
             } else {
                 horizontalMovement
