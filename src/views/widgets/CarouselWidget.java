@@ -29,11 +29,12 @@ public class CarouselWidget extends JPanel {
     private final int CAROUSEL_LAST_ITEM;
     private final int CAROUSEL_ITEMS_NUMBER;
     Timer timerCarousel = new Timer();
-    TimerTask recorrerCarousel;
+    TimerTask timerTask;
 
     public CarouselWidget(Navigator parent, int width, int height) {
+        setSize(width, height);
         this.parent = parent;
-        setBounds(0, 0, parent.getBodyWidth(), height);
+
         CAROUSEL_HEIGHT = height;
         CAROUSEL_ITEMS_NUMBER = 3;
         CAROUSEL_LAST_ITEM = parent.getBodyWidth() * CAROUSEL_ITEMS_NUMBER - parent.getBodyWidth();
@@ -51,7 +52,7 @@ public class CarouselWidget extends JPanel {
         left.setBounds(0, CAROUSEL_HEIGHT / 2, 54, 70);
         left.setVisible(false);
         right = new JButton();
-        right.setBounds(parent.getBodyWidth() - 54, CAROUSEL_HEIGHT / 2, 54, 70);
+        right.setBounds(parent.getBodyWidth() - (54 + 18), CAROUSEL_HEIGHT / 2, 54, 70);
         right.setVisible(false);
 
         generalUtils.buttonChangeColorOrForeground(left, 0, 0, 0, true);
@@ -137,8 +138,16 @@ public class CarouselWidget extends JPanel {
         btn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
+                cancelTimer();
                 right.setVisible(true);
                 left.setVisible(true);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                slideCarouselTimer();
+                right.setVisible(false);
+                left.setVisible(false);
             }
         });
     }
@@ -150,6 +159,7 @@ public class CarouselWidget extends JPanel {
                 right.setVisible(true);
                 left.setVisible(true);
             }
+
             @Override
             public void mouseExited(MouseEvent e) {
                 right.setVisible(false);
@@ -159,14 +169,21 @@ public class CarouselWidget extends JPanel {
     }
 
     private void slideCarouselTimer() {
-        recorrerCarousel = new TimerTask() {
+        timerTask = new TimerTask() {
             @Override
             public void run() {
                 itemSlide(1);
                 repaintCarousel();
             }
         };
-        timerCarousel.schedule(recorrerCarousel, 5000, 5000);
+        timerCarousel.schedule(timerTask, 5000, 5000);
+    }
+
+    private void cancelTimer() {
+        try {
+            timerTask.cancel();
+        } catch (Exception e) {
+        }
     }
 
 }

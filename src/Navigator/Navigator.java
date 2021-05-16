@@ -5,33 +5,35 @@ import java.awt.Toolkit;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.GroupLayout;
 import views.pages.HomePage;
 import views.pages.HelloPage;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class Navigator extends JFrame {
     private JPanel body;
     private Toolkit screen = Toolkit.getDefaultToolkit();
     private Dimension sizeScreen = screen.getScreenSize();
-    private int navigatorWidth = sizeScreen.width;
-    private int navigatorHeight = sizeScreen.height;
+    private GroupLayout bodyLayout;
+    private JScrollPane scrollBar;
 
     public Navigator() {
         body = new JPanel();
-        body.setSize(navigatorWidth, navigatorHeight);
-        body.setBackground(Color.BLUE);
-        body.setLayout(null);
-        add(body);
+        initBody(body, getBodyHeight());
+        add(scrollBar);
     }
 
     public void bodyAddComponent(JPanel panel, int x, int y, int width, int height) {
         panel.setBounds(x, y, width, height);
         panel.setLayout(null);
-        panel.setBackground(Color.BLACK);
         body.add(panel);
     }
 
     public void goHelloPage(int x, int y, int width, int height) {
+        scrollBar.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         body.removeAll();
+        setBodyLayoutGroup(height);
         repaintAndRevalidate();
         HelloPage temp = new HelloPage(this);
         temp.setBounds(x, y, width, height);
@@ -41,7 +43,9 @@ public class Navigator extends JFrame {
     }
 
     public void goHomePage(int x, int y, int width, int height) {
+        scrollBar.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         body.removeAll();
+        setBodyLayoutGroup(height);
         repaintAndRevalidate();
         HomePage homePage = new HomePage(this);
         homePage.setBounds(x, y, width, height);
@@ -66,7 +70,7 @@ public class Navigator extends JFrame {
 
         panel.setBounds(x, y, width, height);
         panel.setLayout(null);
-        panel.setBackground(Color.BLACK);
+
         body.add(panel);
         repaintAndRevalidate();
     }
@@ -78,9 +82,26 @@ public class Navigator extends JFrame {
 
     public void initComponents() {
         setVisible(true);
-        setBounds(0, 0, 500, 500);
+        setBounds(0, 0, getBodyWidth(), getBodyHeight());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+
+    public void initBody(JPanel body, int height) {
+        bodyLayout = new GroupLayout(body);
+        body.setLayout(bodyLayout);
+        setBodyLayoutGroup(height);
+        scrollBar = new JScrollPane();
+        scrollBar.setViewportView(body);
+        scrollBar.setBackground(Color.BLUE);
+        scrollBar.setBounds(0, 0, getBodyWidth(), getBodyHeight());
+    }
+
+    public void setBodyLayoutGroup(int height) {
+        bodyLayout.setHorizontalGroup(
+                bodyLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addGap(0, 0, Short.MAX_VALUE));
+        bodyLayout.setVerticalGroup(
+                bodyLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addGap(0, height, Short.MAX_VALUE));
     }
 
 }

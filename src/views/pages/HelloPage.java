@@ -65,7 +65,7 @@ public class HelloPage extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                parent.goHomePage(0, 0, parent.getBodyWidth(), parent.getBodyHeight());
+                parent.goHomePage(0, 0, parent.getBodyWidth(), (1300 + 400));
             }
         });
     }

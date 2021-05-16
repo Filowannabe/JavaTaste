@@ -44,7 +44,7 @@ public class SliderWidget extends JPanel {
         left = new JButton();
         left.setBounds(0, SLIDER_HEIGHT / 2, 54, 70);
         right = new JButton();
-        right.setBounds(parent.getBodyWidth() - 54, SLIDER_HEIGHT / 2, 54, 70);
+        right.setBounds(parent.getBodyWidth() - (54 + 18), SLIDER_HEIGHT / 2, 54, 70);
 
         generalUtils.buttonChangeColorOrForeground(left, 0, 0, 0, true);
         generalUtils.buttonChangeColorOrForeground(left, 0, 255, 0, false);
