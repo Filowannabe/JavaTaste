@@ -73,7 +73,7 @@ public class SliderWidget extends JPanel {
         add(scrollBar);
     }
 
-    public void repaintCarousel() {
+    private void repaintCarousel() {
         repaint();
         revalidate();
         left.repaint();
@@ -104,7 +104,7 @@ public class SliderWidget extends JPanel {
         }
     }
 
-    public void goRight(JButton btn) {
+    private void goRight(JButton btn) {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -113,7 +113,7 @@ public class SliderWidget extends JPanel {
         });
     }
 
-    public void goLeft(JButton btn) {
+    private void goLeft(JButton btn) {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

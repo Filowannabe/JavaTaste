@@ -8,18 +8,18 @@ import views.widgets.SliderWidget;
 import Navigator.Navigator;
 
 public class HomePage extends JPanel {
-    Navigator parent;
-    CarouselWidget carousel;
-    GeneralUtils generalUtils;
-    SliderWidget slider;
-    SliderWidget slider2;
-    SliderWidget slider3;
+    private Navigator parent;
+    private CarouselWidget carousel;
+    private GeneralUtils generalUtils;
+    private SliderWidget slider;
+    private SliderWidget slider2;
+    private SliderWidget slider3;
 
     public HomePage(Navigator parent) {
         this.parent = parent;
         generalUtils = new GeneralUtils();
 
-        carousel = new CarouselWidget(parent, parent.getBodyWidth()-18, 500);
+        carousel = new CarouselWidget(parent, parent.getBodyWidth() - 18, 500);
         slider = new SliderWidget(parent, parent.getBodyWidth(), 400);
         slider2 = new SliderWidget(parent, parent.getBodyWidth(), 400);
         slider3 = new SliderWidget(parent, parent.getBodyWidth(), 400);
@@ -28,7 +28,7 @@ public class HomePage extends JPanel {
         bodyAddComponent(slider, 0, 500);
         bodyAddComponent(slider2, 0, 900);
         bodyAddComponent(slider3, 0, 1300);
- 
+
         setBackground(Color.BLACK);
     }
 

@@ -28,8 +28,8 @@ public class CarouselWidget extends JPanel {
     private final int CAROUSEL_HEIGHT;
     private final int CAROUSEL_LAST_ITEM;
     private final int CAROUSEL_ITEMS_NUMBER;
-    Timer timerCarousel = new Timer();
-    TimerTask timerTask;
+    private Timer carouselTimer = new Timer();
+    private TimerTask timerTask;
 
     public CarouselWidget(Navigator parent, int width, int height) {
         setSize(width, height);
@@ -116,7 +116,7 @@ public class CarouselWidget extends JPanel {
         }
     }
 
-    public void goRight(JButton btn) {
+    private void goRight(JButton btn) {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -125,7 +125,7 @@ public class CarouselWidget extends JPanel {
         });
     }
 
-    public void goLeft(JButton btn) {
+    private void goLeft(JButton btn) {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -134,7 +134,7 @@ public class CarouselWidget extends JPanel {
         });
     }
 
-    public void stopSlideSystem(JButton btn) {
+    private void stopSlideSystem(JButton btn) {
         btn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -152,7 +152,7 @@ public class CarouselWidget extends JPanel {
         });
     }
 
-    public void stopSlideSystem(JScrollPane pane) {
+    private void stopSlideSystem(JScrollPane pane) {
         pane.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -176,7 +176,7 @@ public class CarouselWidget extends JPanel {
                 repaintCarousel();
             }
         };
-        timerCarousel.schedule(timerTask, 5000, 5000);
+        carouselTimer.schedule(timerTask, 5000, 5000);
     }
 
     private void cancelTimer() {
