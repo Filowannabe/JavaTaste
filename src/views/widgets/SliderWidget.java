@@ -26,7 +26,6 @@ public class SliderWidget extends JPanel {
     private final int SLIDER_ITEMS_NUMBER;
 
     public SliderWidget(Navigator parent, int width, int height) {
-        setSize(width, height);
         this.parent = parent;
 
         SLIDER_HEIGHT = height;
@@ -68,6 +67,7 @@ public class SliderWidget extends JPanel {
         scrollBar.setBackground(Color.BLACK);
         scrollBar.setBounds(0, 0, parent.getBodyWidth(), SLIDER_HEIGHT);
 
+        setSize(width, height);
         add(right);
         add(left);
         add(scrollBar);

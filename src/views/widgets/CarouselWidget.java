@@ -32,7 +32,6 @@ public class CarouselWidget extends JPanel {
     private TimerTask timerTask;
 
     public CarouselWidget(Navigator parent, int width, int height) {
-        setSize(width, height);
         this.parent = parent;
 
         CAROUSEL_HEIGHT = height;
@@ -80,11 +79,10 @@ public class CarouselWidget extends JPanel {
         stopSlideSystem(left);
         stopSlideSystem(right);
         stopSlideSystem(scrollBar);
-
+        setSize(width, height);
         add(right);
         add(left);
         add(scrollBar);
-        slideCarouselTimer();
     }
 
     public void repaintCarousel() {
@@ -156,12 +154,14 @@ public class CarouselWidget extends JPanel {
         pane.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
+                cancelTimer();
                 right.setVisible(true);
                 left.setVisible(true);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
+                slideCarouselTimer();
                 right.setVisible(false);
                 left.setVisible(false);
             }

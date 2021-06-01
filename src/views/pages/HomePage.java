@@ -9,34 +9,35 @@ import Navigator.Navigator;
 
 public class HomePage extends JPanel {
     private Navigator parent;
-    private CarouselWidget carousel;
     private GeneralUtils generalUtils;
-    private SliderWidget slider;
-    private SliderWidget slider2;
-    private SliderWidget slider3;
+    private CarouselWidget carousel;
+    private int sliderHeight = 0;
+    private SliderWidget[] sliders;
 
     public HomePage(Navigator parent) {
         this.parent = parent;
         generalUtils = new GeneralUtils();
-
         carousel = new CarouselWidget(parent, parent.getBodyWidth() - 18, 500);
-        slider = new SliderWidget(parent, parent.getBodyWidth(), 400);
-        slider2 = new SliderWidget(parent, parent.getBodyWidth(), 400);
-        slider3 = new SliderWidget(parent, parent.getBodyWidth(), 400);
-
         bodyAddComponent(carousel, 0, 0);
-        bodyAddComponent(slider, 0, 500);
-        bodyAddComponent(slider2, 0, 900);
-        bodyAddComponent(slider3, 0, 1300);
 
+        sliders = new SliderWidget[5];
+        sliderHeight = 500;
+        for (int i = 0; i < sliders.length; i++) {
+            sliders[i] = new SliderWidget(parent, parent.getBodyWidth() - 18, 400);
+            bodyAddComponent(sliders[i], 0, sliderHeight);
+            sliderHeight += 400;
+        }
         setBackground(Color.BLACK);
     }
 
-    public void bodyAddComponent(JPanel panel, int x, int y) {
+    public int getHomeHeight() {
+        return this.sliderHeight;
+    }
+
+    private void bodyAddComponent(JPanel panel, int x, int y) {
         panel.setLocation(x, y);
         panel.setLayout(null);
         panel.setBackground(Color.BLACK);
         add(panel);
     }
-
 }

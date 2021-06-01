@@ -7,24 +7,24 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import views.utils.GeneralUtils;
-
 import Navigator.Navigator;
 
 public class HelloPage extends JPanel {
 
+    private Navigator parent;
     private JLabel title;
     private JButton switcher;
     private JPanel homeBody;
     private JPanel blackWindow;
     private JLabel background;
     private GeneralUtils generalUtils;
-    private Navigator parent = new Navigator();
-    private final int COMPONENTS_IN_X = parent.getBodyWidth() / 2 - ((parent.getBodyWidth() / 20) / 2);
+    private final int COMPONENTS_IN_X;
+    private HomePage homePage;
 
     public HelloPage(Navigator parent) {
         this.parent = parent;
         generalUtils = new GeneralUtils();
-
+        COMPONENTS_IN_X = parent.getBodyWidth() / 2 - ((parent.getBodyWidth() / 20) / 2);
         background = new JLabel();
         background.setBounds(0, 0, parent.getBodyWidth(), parent.getBodyHeight());
         background.setIcon(generalUtils.scaleImageToLabel("/views/images/bghack.jpg", parent.getBodyWidth(),
@@ -42,7 +42,7 @@ public class HelloPage extends JPanel {
         switcher = new JButton();
         switcher.setBounds(COMPONENTS_IN_X, parent.getBodyHeight() / 2, parent.getBodyWidth() / 20, 30);
         generalUtils.changeFontAndText(switcher, true, "Tahoma", 15, "Switch");
-        goCarousel(switcher);
+        goCarousel(switcher, parent);
 
         generalUtils.buttonChangeColorOrForeground(switcher, 0, 255, 0, true);
         generalUtils.buttonChangeColorOrForeground(switcher, 255, 255, 255, false);
@@ -60,12 +60,13 @@ public class HelloPage extends JPanel {
         add(homeBody);
     }
 
-    public void goCarousel(JButton btn) {
-        btn.addActionListener(new ActionListener() {
+    public void goCarousel(JButton btn, Navigator parent) {
 
+        btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                parent.goHomePage(0, 0, parent.getBodyWidth(), (1300 + 400));
+                homePage = new HomePage(parent);
+                parent.goHomePage(0, 0, parent.getBodyWidth(), homePage.getHomeHeight());
             }
         });
     }
