@@ -23,7 +23,7 @@ public class App extends Application {
     private static Navigator navigator;
 
     public static void main(String[] args) throws Exception {
-        int chooser = 1;
+        int chooser = 0;
         if (chooser == 0) {
             launch(args);
         } else {
