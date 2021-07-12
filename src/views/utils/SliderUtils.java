@@ -43,7 +43,7 @@ public class SliderUtils {
         label[i].addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                parent.goHelloPage(0, 0, parent.getBodyWidth(), parent.getBodyHeight());
+                parent.goMediaPlayerPage(parent.getBodyWidth(), parent.getBodyHeight() - 50);
             }
 
             @Override

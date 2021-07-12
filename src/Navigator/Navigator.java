@@ -7,11 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import views.pages.HomePage;
+import views.pages.MediaPlayerPage;
 import views.pages.HelloPage;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-
 import javafx.embed.swing.JFXPanel;
+
 
 public class Navigator extends JFrame {
     private JPanel body;
@@ -56,11 +57,12 @@ public class Navigator extends JFrame {
         repaintAndRevalidate();
     }
 
-    public void goMediaPlayerPage(JFXPanel fxPanel, int width, int height) {
+    public void goMediaPlayerPage(int width, int height) {
         scrollBar.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollBar.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         body.removeAll();
         setBodyLayoutGroup(height);
+        JFXPanel fxPanel = new MediaPlayerPage().getPanel();
         setMediaPlayerBodyLayoutGroup(body, fxPanel, width, height);
         repaintAndRevalidate();
         body.add(fxPanel);
