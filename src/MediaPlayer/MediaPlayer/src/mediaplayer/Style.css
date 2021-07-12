@@ -1,0 +1,5 @@
+#openFile {
+    -fx-background-image: url("../images/file.png");
+    -fx-background-size: 20 20;
+    -fx-background-position: center;
+}

@@ -1,0 +1,13 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "src/MediaPlayer/fx/javafx.base.jar",
+        "src/MediaPlayer/fx/javafx.controls.jar",
+        "src/MediaPlayer/fx/javafx.fxml.jar",
+        "src/MediaPlayer/fx/javafx.graphics.jar",
+        "src/MediaPlayer/fx/javafx.media.jar",
+        "src/MediaPlayer/fx/javafx.swing.jar",
+        "src/MediaPlayer/fx/javafx.web.jar",
+        "src/MediaPlayer/fx/javafx-swt.jar"
+    ]
+}
